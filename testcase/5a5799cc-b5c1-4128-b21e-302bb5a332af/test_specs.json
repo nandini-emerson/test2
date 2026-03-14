@@ -1,0 +1,13 @@
+{
+  "name": "Functional - Help Intent Handling",
+  "description": "Tests the /api/assistant/message endpoint with a user input containing 'help', expecting the assistant to return the help template.",
+  "test_type": "functional",
+  "input": "POST to /api/assistant/message with user_input: 'help', user_context: null.",
+  "output": "JSON response with success: true and a help message.",
+  "success_criteria": [
+    "HTTP 200 response",
+    "response['success'] is True",
+    "response['response'] contains 'If you need help'"
+  ],
+  "error_scenarios": null
+}

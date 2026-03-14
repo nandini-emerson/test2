@@ -1,0 +1,17 @@
+{
+  "name": "Functional - Valid Ticket Verification via API",
+  "description": "Tests the /api/assistant/verify_ticket endpoint with a valid ticket code and event ID, expecting successful authorization and correct response formatting.",
+  "test_type": "functional",
+  "input": "POST to /api/assistant/verify_ticket with valid ticket_code and event_id in JSON body.",
+  "output": "JSON response with success: true, authorized: true, and a formatted success message.",
+  "success_criteria": [
+    "HTTP 200 response",
+    "response['success'] is True",
+    "response['authorized'] is True",
+    "response['response'] contains 'is valid and unused'"
+  ],
+  "error_scenarios": [
+    "Ticket database API is unavailable",
+    "Ticket code is not found or marked as used"
+  ]
+}

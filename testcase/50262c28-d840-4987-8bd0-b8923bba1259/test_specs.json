@@ -1,0 +1,16 @@
+{
+  "name": "Performance - Ticket Verification API Latency",
+  "description": "Assesses the latency of the ticket verification workflow, including external API calls, under normal and peak conditions.",
+  "test_type": "performance",
+  "input": "Measure response time for /api/assistant/verify_ticket with valid ticket data under normal and peak loads.",
+  "output": "Latency metrics for ticket verification requests.",
+  "success_criteria": [
+    "95th percentile latency is below 1.5 seconds",
+    "No significant increase in latency under peak load",
+    "No failed requests due to timeouts"
+  ],
+  "error_scenarios": [
+    "External ticket DB API slow or unresponsive",
+    "Timeouts during verification"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Integration - End-to-End Ticket Verification Success",
+  "description": "Validates the complete workflow for a valid and unused ticket via the /api/assistant/verify_ticket endpoint, ensuring all components interact correctly.",
+  "test_type": "integration",
+  "input": "POST to /api/assistant/verify_ticket with a valid ticket_code and event_id in JSON body.",
+  "output": "JSON response indicating success, authorized: true, and a formatted success message.",
+  "success_criteria": [
+    "HTTP status code is 200",
+    "response.success is True",
+    "response.authorized is True",
+    "response.response contains 'authorized for entry'",
+    "Audit log event is recorded with action 'validation_success'"
+  ],
+  "error_scenarios": [
+    "Ticket database API is unreachable",
+    "Audit logging API fails",
+    "Notification service fails"
+  ]
+}

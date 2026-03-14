@@ -1,0 +1,17 @@
+{
+  "name": "Functional - Invalid Ticket Returns Failure Response",
+  "description": "Checks that the /api/assistant/verify_ticket endpoint returns the correct failure message and logs the event when an invalid or used ticket is provided.",
+  "test_type": "functional",
+  "input": "POST to /api/assistant/verify_ticket with a ticket_code that is invalid or already used.",
+  "output": "JSON response indicating not authorized and a failure message.",
+  "success_criteria": [
+    "HTTP status is 200",
+    "response['success'] is True",
+    "response['authorized'] is False",
+    "response['response'] contains 'is invalid or already used'"
+  ],
+  "error_scenarios": [
+    "Ticket database API is unreachable",
+    "Malformed JSON input"
+  ]
+}

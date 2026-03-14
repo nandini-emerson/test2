@@ -1,0 +1,16 @@
+{
+  "name": "Performance - High Load on /api/assistant/message Endpoint",
+  "description": "Measures the system's response time and error rate when handling a high volume of concurrent requests to the /api/assistant/message endpoint.",
+  "test_type": "performance",
+  "input": "Simultaneous POST requests (e.g., 100-200) to /api/assistant/message with valid user_input payloads.",
+  "output": "Aggregate metrics: average response time, maximum response time, error rate.",
+  "success_criteria": [
+    "Average response time is below 2 seconds",
+    "Error rate is below 2%",
+    "No resource exhaustion or crashes"
+  ],
+  "error_scenarios": [
+    "Timeouts due to resource exhaustion",
+    "Increased error rates under load"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Integration - Ticket Verification and Audit Logging",
+  "description": "Tests the workflow where a ticket is verified and the audit log is updated, ensuring both ticket verification and logging APIs are called.",
+  "test_type": "integration",
+  "input": "POST to /api/assistant/verify_ticket with a valid ticket_code and event_id.",
+  "output": "JSON response with success: true, authorized status, and formatted message. Audit log should contain a new entry.",
+  "success_criteria": [
+    "HTTP 200 response",
+    "response['success'] is True",
+    "Audit logging API receives a call with correct parameters"
+  ],
+  "error_scenarios": [
+    "Audit logging API is unavailable",
+    "Ticket verification API is unavailable"
+  ]
+}

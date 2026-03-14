@@ -1,0 +1,17 @@
+{
+  "name": "Performance - LLM Endpoint Latency",
+  "description": "Evaluates the response time of the /api/assistant/llm endpoint under moderate concurrent usage.",
+  "test_type": "performance",
+  "input": "Multiple concurrent POST requests to /api/assistant/llm with varied user_prompt payloads.",
+  "output": "Latency distribution and error rate for LLM responses.",
+  "success_criteria": [
+    "95th percentile latency is below 5 seconds",
+    "No more than 5% of requests fail",
+    "LLM fallback model is used if primary fails, with no user-facing errors"
+  ],
+  "error_scenarios": [
+    "LLM API rate limits or timeouts",
+    "LLM fallback model also fails",
+    "Application returns 500 errors"
+  ]
+}

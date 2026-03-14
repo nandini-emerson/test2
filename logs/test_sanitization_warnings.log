@@ -1,0 +1,4 @@
+Test Code Sanitization Warnings:
+  - Found 1 HTTP calls that need mocking
+  - Auto-wrapped HTTP calls with mocks
+  - Found 1 localhost connections - these will be mocked

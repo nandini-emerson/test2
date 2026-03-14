@@ -1,0 +1,17 @@
+{
+  "name": "Integration - LLM Endpoint Returns Model Response",
+  "description": "Verifies that the /api/assistant/llm endpoint interacts with the LLM and returns a generated response.",
+  "test_type": "integration",
+  "input": "POST to /api/assistant/llm with JSON containing user_prompt and optional context.",
+  "output": "JSON response with the LLM-generated text.",
+  "success_criteria": [
+    "HTTP status is 200",
+    "response['success'] is True",
+    "response['response'] is a non-empty string"
+  ],
+  "error_scenarios": [
+    "Missing user_prompt in request",
+    "LLM API is unavailable",
+    "Malformed JSON input"
+  ]
+}

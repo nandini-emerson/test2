@@ -1,0 +1,38 @@
+[
+  {
+    "id": "test_1",
+    "name": "test_agent.py::test_integration_escalation_endpoint_with_complete_data",
+    "description": "Test: test_agent.py::test_integration_escalation_endpoint_with_complete_data",
+    "type": "integration",
+    "status": "passed",
+    "duration": 0.0,
+    "error": null
+  },
+  {
+    "id": "test_2",
+    "name": "test_agent.py::test_integration_escalation_notification_service_unavailable",
+    "description": "Test: test_agent.py::test_integration_escalation_notification_service_unavailable",
+    "type": "integration",
+    "status": "passed",
+    "duration": 0.0,
+    "error": null
+  },
+  {
+    "id": "test_3",
+    "name": "test_agent.py::test_integration_escalation_audit_logging_service_failure",
+    "description": "Test: test_agent.py::test_integration_escalation_audit_logging_service_failure",
+    "type": "integration",
+    "status": "passed",
+    "duration": 0.0,
+    "error": null
+  },
+  {
+    "id": "test_4",
+    "name": "test_agent.py::test_integration_escalation_missing_issue_details",
+    "description": "Test: test_agent.py::test_integration_escalation_missing_issue_details",
+    "type": "integration",
+    "status": "passed",
+    "duration": 0.0,
+    "error": null
+  }
+]

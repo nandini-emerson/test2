@@ -1,0 +1,111 @@
+=== PYTEST EXECUTION LOG ===
+
+Exit Code: 1
+
+STDOUT:
+============================= test session starts =============================
+platform win32 -- Python 3.13.4, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\nandevi\AppData\Local\Temp\aba_venv_cache\venv_2a9272ea9c6d0949c92de61faa044943\Scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.4', 'Platform': 'Windows-11-10.0.22631-SP0', 'Packages': {'pytest': '9.0.2', 'pluggy': '1.6.0'}, 'Plugins': {'anyio': '4.12.1', 'asyncio': '1.3.0', 'json-report': '1.5.0', 'metadata': '3.1.1'}}
+rootdir: C:\Users\nandevi\AppData\Local\Temp\test_venv_exec_8mfis4wi
+plugins: anyio-4.12.1, asyncio-1.3.0, json-report-1.5.0, metadata-3.1.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+test_agent.py::test_performance_llm_endpoint_latency FAILED              [100%]
+
+================================== FAILURES ===================================
+____________________ test_performance_llm_endpoint_latency ____________________
+
+mock_llm_endpoint = <function mock_llm_endpoint.<locals>._endpoint at 0x0000022495C42980>
+
+    @pytest.mark.performance
+    def test_performance_llm_endpoint_latency(mock_llm_endpoint):
+        """
+        Performance test for /api/assistant/llm endpoint.
+        - Sends multiple concurrent POST requests with varied user_prompt payloads.
+        - Measures latency distribution and error rate.
+        - Asserts 95th percentile latency < 5s, error rate <= 5%, and fallback model is used if primary fails.
+        """
+        NUM_REQUESTS = 50
+        prompts = [
+            f"user_prompt_{i}" for i in range(NUM_REQUESTS // 2)
+        ] + [
+            f"user_prompt_timeout_{i}" for i in range(NUM_REQUESTS // 4)
+        ] + [
+            f"user_prompt_fail_{i}" for i in range(NUM_REQUESTS // 8)
+        ] + [
+            f"user_prompt_fallback_fail_{i}" for i in range(NUM_REQUESTS // 8)
+        ]
+        # Shuffle prompts for randomness
+        import random
+        random.shuffle(prompts)
+    
+        latencies = []
+        errors = 0
+        fallback_used = 0
+    
+        def call_llm(prompt):
+            start = time.time()
+            response = mock_llm_endpoint(prompt)
+            latency = time.time() - start
+            latencies.append(latency)
+            # Check for error response
+            if isinstance(response, tuple) and response[1] == 500:
+                errors += 1
+            elif isinstance(response, dict) and "Fallback" in response.get("result", ""):
+                fallback_used += 1
+            return response
+    
+        # Run requests concurrently using asyncio
+        async def run_requests():
+            loop = asyncio.get_event_loop()
+            tasks = [
+                loop.run_in_executor(None, call_llm, prompt)
+                for prompt in prompts
+            ]
+            await asyncio.gather(*tasks)
+    
+        # Run the async test
+>       asyncio.run(run_requests())
+
+test_agent.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python313\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\base_events.py:725: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+test_agent.py:110: in run_requests
+    await asyncio.gather(*tasks)
+C:\Python313\Lib\concurrent\futures\thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+prompt = 'user_prompt_fallback_fail_3'
+
+    def call_llm(prompt):
+        start = time.time()
+        response = mock_llm_endpoint(prompt)
+        latency = time.time() - start
+        latencies.append(latency)
+        # Check for error response
+        if isinstance(response, tuple) and response[1] == 500:
+>           errors += 1
+            ^^^^^^
+E           UnboundLocalError: cannot access local variable 'errors' where it is not associated with a value
+
+test_agent.py:98: UnboundLocalError
+--------------------------------- JSON report ---------------------------------
+report saved to: C:\Users\nandevi\AppData\Local\Temp\test_venv_exec_8mfis4wi\pytest_report.json
+=========================== short test summary info ===========================
+FAILED test_agent.py::test_performance_llm_endpoint_latency - UnboundLocalErr...
+============================== 1 failed in 4.08s ==============================
+
+
+STDERR:

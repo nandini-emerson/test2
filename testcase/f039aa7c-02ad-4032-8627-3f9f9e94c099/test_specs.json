@@ -1,0 +1,14 @@
+{
+  "name": "Functional - LLM Endpoint Missing Prompt",
+  "description": "Tests the /api/assistant/llm endpoint with missing user_prompt, expecting an HTTP 400 error and appropriate error message.",
+  "test_type": "functional",
+  "input": "POST to /api/assistant/llm with empty JSON body or missing user_prompt field.",
+  "output": "JSON error response indicating user_prompt is required.",
+  "success_criteria": [
+    "HTTP 400 response",
+    "response['success'] is False",
+    "response['error_type'] is 'HTTPException'",
+    "response['message'] contains 'user_prompt is required'"
+  ],
+  "error_scenarios": null
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Integration - Successful Ticket Verification and Entry Authorization",
+  "description": "Tests the end-to-end workflow of verifying a valid, unused ticket and authorizing entry via the /api/assistant/verify_ticket endpoint.",
+  "test_type": "integration",
+  "input": "POST to /api/assistant/verify_ticket with a valid ticket_code and event_id in JSON body.",
+  "output": "JSON response indicating success, authorized=true, and a formatted success message.",
+  "success_criteria": [
+    "HTTP status code is 200",
+    "response['success'] is True",
+    "response['authorized'] is True",
+    "response['response'] contains 'is valid and unused'"
+  ],
+  "error_scenarios": [
+    "Ticket database API unavailable",
+    "Invalid ticket_code or event_id",
+    "Audit logging service failure"
+  ]
+}

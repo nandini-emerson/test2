@@ -1,0 +1,18 @@
+{
+  "name": "Integration - End-to-End Ticket Verification Failure",
+  "description": "Validates the workflow for an invalid or already used ticket via the /api/assistant/verify_ticket endpoint, ensuring proper error handling and audit logging.",
+  "test_type": "integration",
+  "input": "POST to /api/assistant/verify_ticket with an invalid or used ticket_code and valid event_id.",
+  "output": "JSON response indicating success, authorized: false, and a formatted failure message.",
+  "success_criteria": [
+    "HTTP status code is 200",
+    "response.success is True",
+    "response.authorized is False",
+    "response.response contains 'invalid or already used'",
+    "Audit log event is recorded with action 'validation_failure'"
+  ],
+  "error_scenarios": [
+    "Ticket database API returns error",
+    "Audit logging API fails"
+  ]
+}

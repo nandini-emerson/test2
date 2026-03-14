@@ -1,0 +1,17 @@
+{
+  "name": "Performance - High Load Ticket Verification",
+  "description": "Measures the system's response time and stability when processing a high volume of concurrent /api/assistant/verify_ticket requests.",
+  "test_type": "performance",
+  "input": "Simultaneous POST requests (e.g., 100-200) to /api/assistant/verify_ticket with valid ticket data.",
+  "output": "Aggregate statistics: average response time, error rate, and throughput.",
+  "success_criteria": [
+    "Average response time per request is below 2 seconds",
+    "Error rate is less than 2%",
+    "No resource exhaustion or crashes occur"
+  ],
+  "error_scenarios": [
+    "Timeouts from ticket database API",
+    "Rate limiting by downstream APIs",
+    "Application crashes under load"
+  ]
+}

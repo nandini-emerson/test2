@@ -1,0 +1,14 @@
+{
+  "name": "Functional - Invalid Ticket Code Format",
+  "description": "Tests the /api/assistant/verify_ticket endpoint with an invalid ticket code format, expecting validation error handling.",
+  "test_type": "functional",
+  "input": "POST to /api/assistant/verify_ticket with ticket_code containing invalid characters (e.g., '!!!'), and valid event_id.",
+  "output": "JSON error response indicating validation failure.",
+  "success_criteria": [
+    "HTTP 400 response",
+    "response['success'] is False",
+    "response['error_type'] is 'JSONParseError' or 'ValidationError'",
+    "response['message'] contains 'Malformed JSON' or 'invalid ticket data'"
+  ],
+  "error_scenarios": null
+}

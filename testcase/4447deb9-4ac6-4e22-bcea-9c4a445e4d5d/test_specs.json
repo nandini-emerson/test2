@@ -1,0 +1,19 @@
+{
+  "name": "Integration - Escalation Endpoint Workflow",
+  "description": "Tests the /api/assistant/escalate endpoint to ensure escalation triggers both notification and audit logging subsystems.",
+  "test_type": "integration",
+  "input": "POST to /api/assistant/escalate with JSON containing issue_details and user_context.",
+  "output": "JSON response indicating success and a message that the issue was escalated.",
+  "success_criteria": [
+    "HTTP status code is 200",
+    "response.success is True",
+    "response.response contains 'escalated to human staff'",
+    "Notification is sent to staff contact",
+    "Audit log event is recorded with action 'escalation'"
+  ],
+  "error_scenarios": [
+    "Notification service API fails",
+    "Audit logging API fails",
+    "Missing issue_details in request"
+  ]
+}

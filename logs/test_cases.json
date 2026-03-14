@@ -1,0 +1,38 @@
+[
+  {
+    "id": "test_1",
+    "name": "test_agent.py::test_performance_ticket_verification_api_latency_normal",
+    "description": "Test: test_agent.py::test_performance_ticket_verification_api_latency_normal",
+    "type": "performance",
+    "status": "skipped",
+    "duration": 0.0,
+    "error": null
+  },
+  {
+    "id": "test_2",
+    "name": "test_agent.py::test_performance_ticket_verification_api_latency_peak",
+    "description": "Test: test_agent.py::test_performance_ticket_verification_api_latency_peak",
+    "type": "performance",
+    "status": "skipped",
+    "duration": 0.0,
+    "error": null
+  },
+  {
+    "id": "test_3",
+    "name": "test_agent.py::test_performance_ticket_verification_api_latency_no_failed_requests",
+    "description": "Test: test_agent.py::test_performance_ticket_verification_api_latency_no_failed_requests",
+    "type": "performance",
+    "status": "skipped",
+    "duration": 0.0,
+    "error": null
+  },
+  {
+    "id": "test_4",
+    "name": "test_agent.py::test_performance_ticket_verification_api_latency_timeout_handling",
+    "description": "Test: test_agent.py::test_performance_ticket_verification_api_latency_timeout_handling",
+    "type": "performance",
+    "status": "skipped",
+    "duration": 0.0,
+    "error": null
+  }
+]

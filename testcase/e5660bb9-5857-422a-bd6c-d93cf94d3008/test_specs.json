@@ -1,0 +1,16 @@
+{
+  "name": "Integration - Escalation Endpoint Success",
+  "description": "Tests the /api/assistant/escalate endpoint with valid issue details and user context, ensuring escalation workflow triggers notification and audit logging.",
+  "test_type": "integration",
+  "input": "POST to /api/assistant/escalate with JSON body containing issue_details and user_context.",
+  "output": "JSON response with success: true and confirmation of escalation.",
+  "success_criteria": [
+    "HTTP 200 response",
+    "response['success'] is True",
+    "response['response'] contains 'Issue escalated to human staff'"
+  ],
+  "error_scenarios": [
+    "Notification API is unavailable",
+    "Audit logging API is unavailable"
+  ]
+}
